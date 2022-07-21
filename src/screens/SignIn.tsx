@@ -5,15 +5,20 @@ import Logo from '../assets/logo_primary.svg';
 import { Input } from '../components/Input';
 import { Envelope, Key } from 'phosphor-react-native';
 import { Button } from '../components/Button';
+import { Alert } from 'react-native';
 
 export function SignIn() {
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const { colors } = useTheme();
 
     function handleSignIn() {
-        console.log(`Nome: ${name} \nsenha: ${password}`)
+        if(!email || !password) {
+            return Alert.alert("Entrar", "Informe e-mail e senha.");
+        }
+
+        console.log(`Nome: ${email} \nsenha: ${password}`)
     }
 
     return (
@@ -29,7 +34,7 @@ export function SignIn() {
                 mb={4}
                 placeholder="E-mail"
                 InputLeftElement={<Icon as={<Envelope color={colors.gray[300]}/>} ml={4}/>}
-                onChangeText={setName}
+                onChangeText={setEmail}
             />
 
             <Input 
